@@ -1,28 +1,38 @@
 public class MyApp {
 
     public static void main(String[] args) {
-        // 文字 : char
-        char a = 'a'; // シングルクォーテーション！
+        // ***** (1)演算
+        // + - * / %
+        // ++ --
 
-        // 整数 : byte, short, int, long
-        int x = 10;
-        long y = 55555555555L; // 数値の末尾にL(or l)が必要
+        // int i;
 
-        // 浮動小数点数 : float, double
-        double d = 23423.344;
-        float f = 32.33F; // 数値の末尾にF(or f)が必要
+        // i = 10 / 3;
+        // System.out.println(i); // 3 (iはintなので3)
 
-        // 論理値 : boolean
-        boolean flag = true; // or false
+        // i = 10 % 3;
+        // System.out.println(i); // 1
 
-        // 文字列 : String
-        // String msg = "Hello World Again!"; // ダブルクォーテーション！
-        String msg = "Hello Wo\nrld Again\t!";
-        System.out.println(msg);
+        // int x = 5;
+        // x++;
+        // System.out.println(x); // 6
 
-        // 特殊文字（Stringにて使用可能）
-        // \n : 改行
-        // \t : タブ
+        // x--;
+        // System.out.println(x); // 5
+
+
+        // ***** (2)代入を伴う演算
+        // int x = 5;
+        // // x = x + 12;
+        // x += 12;
+        // System.out.println(x); // 17
+
+
+        // ***** (3)文字列の連結
+        // String s;
+        // s = "hello " + "world";
+        // System.out.println(s);
+
     }
 
 }
