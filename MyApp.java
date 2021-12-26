@@ -1,25 +1,23 @@
 public class MyApp {
 
     public static void main(String[] args) {
-        // データ型の変換（キャスト）
+        // if
 
-        // double d = 52343.231;
-        // double型をint型へ変換する場合
-        // int i = d;   // <= Errorとなる
-        // int i = (int)d;     // <= OK!
-        // System.out.println(i); // 52343
+        // 比較演算子 : >, >=, <, <=, ==, !=
+        // 論理演算子 : &&, ||, !
 
+        int score = 90;
+        // if (score > 80) {
+        //     System.out.println("Great!");
+        // } else if (score > 60) {
+        //     System.out.println("Good!");
+        // } else {
+        //     System.out.println("so so ... !");
+        // }
 
-        // ミスしやすい例
-        // int i = 10;
-        // double d = i / 4;
-        // System.out.println(d); // 2.0になってしまう！！
-        // 「i / 4」の時点でもint型のため、2.5ではなく、2となってdに代入される。
-
-        // 修正版
-        int i = 10;
-        double d = (double)i / 4;
-        System.out.println(d); // 2.5
+        // 条件演算子を用いて if/else 記述をスッキリ
+        String msg = score > 80 ? "Great!" : "so so ... !";
+        System.out.println(msg);
 
     }
 
