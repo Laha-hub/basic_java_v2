@@ -1,37 +1,25 @@
 public class MyApp {
 
     public static void main(String[] args) {
-        // ***** (1)演算
-        // + - * / %
-        // ++ --
+        // データ型の変換（キャスト）
 
-        // int i;
-
-        // i = 10 / 3;
-        // System.out.println(i); // 3 (iはintなので3)
-
-        // i = 10 % 3;
-        // System.out.println(i); // 1
-
-        // int x = 5;
-        // x++;
-        // System.out.println(x); // 6
-
-        // x--;
-        // System.out.println(x); // 5
+        // double d = 52343.231;
+        // double型をint型へ変換する場合
+        // int i = d;   // <= Errorとなる
+        // int i = (int)d;     // <= OK!
+        // System.out.println(i); // 52343
 
 
-        // ***** (2)代入を伴う演算
-        // int x = 5;
-        // // x = x + 12;
-        // x += 12;
-        // System.out.println(x); // 17
+        // ミスしやすい例
+        // int i = 10;
+        // double d = i / 4;
+        // System.out.println(d); // 2.0になってしまう！！
+        // 「i / 4」の時点でもint型のため、2.5ではなく、2となってdに代入される。
 
-
-        // ***** (3)文字列の連結
-        // String s;
-        // s = "hello " + "world";
-        // System.out.println(s);
+        // 修正版
+        int i = 10;
+        double d = (double)i / 4;
+        System.out.println(d); // 2.5
 
     }
 
