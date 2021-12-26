@@ -7,3 +7,4 @@
 #7 データ型の変換
 #8 if
 #9 switch
+#10 while
