@@ -1,21 +1,29 @@
 public class MyApp {
 
     public static void main(String[] args) {
-        // while
+        // for
 
-        // 0 - 9の数値を表示するプログラム
-        // int i = 100;
-        // while (i < 10) {
+        // 0 - 9 の数値を表示するプログラム
+        // for (int i = 0; i < 10; i++) {
         //     System.out.println(i);
-        //     i++;
         // }
 
-        // do while
-        int i = 100;
-        do {
-            System.out.println(i);
-            i++;
-        } while (i < 10);
+
+        // break : ループを抜ける
+        // for (int i = 0; i < 10; i++) {
+        //     if (i == 5) {
+        //         break;
+        //     }
+        //     System.out.println(i); // 0 - 4
+        // }
+
+        // continue : 次のループに移る
+        for (int i = 0; i < 5; i++) {
+            if (i == 3) {
+                continue;
+            }
+            System.out.println(i); // 0, 1, 2, 4
+        }
 
 
     }
