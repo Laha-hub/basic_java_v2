@@ -1,32 +1,25 @@
 public class MyApp {
 
     public static void main(String[] args) {
-        // 配列
+        // 配列の操作
 
-        // 配列の中に格納するデータの型で宣言する
-        int[] sales;
+        int[] sales = {700, 400, 500};
 
-        // 配列を宣言したら、データ領域の確保が必要（new でインスタンス化）
-        sales = new int[3];
+        // for (int i = 0; i < 3; i++) {
+        //     System.out.println(sales[i]); // 700, 400, 500
+        // }
 
-        // 上記宣言にて、sales[0]-sales[2]が用意される
-        sales[0] = 100;
-        sales[1] = 200;
-        sales[2] = 300;
-        System.out.println(sales[1]); // 200
+        // 配列の要素数 : sales.length
+        // for (int i = 0; i < sales.length; i++) {
+        //     System.out.println(sales[i]); // 700, 400, 500
+        // }
 
-        // 値の代入
-        sales[1] = 1000;
-        System.out.println(sales[1]); // 1000
+        // forのスッキリした記述
+        for (int sale : sales) {
+            System.out.println(sale); // 700, 400, 500
+        }
 
 
-        // 配列をまとめて初期化する方法（1）
-        int[] sales2;
-        sales2 = new int[] {100, 200, 300};
-
-        // 配列をまとめて初期化する方法（2）
-        int[] sales3 = {100, 200, 300};
-        System.out.println(sales3[2]); // 300
     }
 
 }
