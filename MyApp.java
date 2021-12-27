@@ -1,31 +1,32 @@
 public class MyApp {
 
     public static void main(String[] args) {
-        // for
+        // 配列
 
-        // 0 - 9 の数値を表示するプログラム
-        // for (int i = 0; i < 10; i++) {
-        //     System.out.println(i);
-        // }
+        // 配列の中に格納するデータの型で宣言する
+        int[] sales;
 
+        // 配列を宣言したら、データ領域の確保が必要（new でインスタンス化）
+        sales = new int[3];
 
-        // break : ループを抜ける
-        // for (int i = 0; i < 10; i++) {
-        //     if (i == 5) {
-        //         break;
-        //     }
-        //     System.out.println(i); // 0 - 4
-        // }
+        // 上記宣言にて、sales[0]-sales[2]が用意される
+        sales[0] = 100;
+        sales[1] = 200;
+        sales[2] = 300;
+        System.out.println(sales[1]); // 200
 
-        // continue : 次のループに移る
-        for (int i = 0; i < 5; i++) {
-            if (i == 3) {
-                continue;
-            }
-            System.out.println(i); // 0, 1, 2, 4
-        }
+        // 値の代入
+        sales[1] = 1000;
+        System.out.println(sales[1]); // 1000
 
 
+        // 配列をまとめて初期化する方法（1）
+        int[] sales2;
+        sales2 = new int[] {100, 200, 300};
+
+        // 配列をまとめて初期化する方法（2）
+        int[] sales3 = {100, 200, 300};
+        System.out.println(sales3[2]); // 300
     }
 
 }
