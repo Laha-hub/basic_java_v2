@@ -15,3 +15,4 @@
 #15 基本データ型と参照型
 #16 メソッド
 #17 methodのoverload
+#18 class
