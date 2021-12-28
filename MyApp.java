@@ -1,25 +1,39 @@
-// class : 複雑なデータ型を自分で作りたいときに便利
-
-// 例：何らかのアプリ作成をしており、ユーザーに関するデータ型が欲しい場合
-// String s;のようにUser tom;として、様々なデータを持った変数を宣言できると便利 => classでできる
+// constructor : クラスがインスタンス化されるときに、必ず実行される特殊なメソッド
 
 
 class User {
-    // フィールド : classに属する変数
-    String name = "Me!";
+    String name;
+
+    // constructorの宣言はクラスと同じ名前のメソッドを作ればよい
+    User(String name) {
+        // メソッド内からクラスのフィールドにアクセスするには「this」という特殊なキーワードを使う
+        this.name = name;
+    }
+
+    // constructorはメソッドなので、overloadも有効
+    User() {
+        // this.name = "Me";
+
+        // this() : このクラスのconstructorという意味
+        this("Me!"); // 引数なしでUserクラスをインスタンス化した場合に、結果として、this.nameに"Me!"が設定される
+    }
 
     void sayHi() {
-        System.out.println("Hi!");
+        System.out.println("Hi! " + this.name);
     }
 }
 
 public class MyApp {
     public static void main(String[] args) {
-        // Classは参照型なので使用するには、インスタンス化が必要
-        User tom; // データ型の指定
-        tom = new User(); // インスタンス化
+        User tom;
+        tom = new User("Tom");
+        System.out.println(tom.name); // Tom
+        tom.sayHi(); // Hi! Tom
 
-        System.out.println(tom.name); //Me!
-        tom.sayHi(); // Hi!
+        User me;
+        me = new User();
+        System.out.println(me.name); // Me
+        me.sayHi(); // Hi! Me
+
     }
 }

@@ -16,3 +16,4 @@
 #16 メソッド
 #17 methodのoverload
 #18 class
+#19 constructor
