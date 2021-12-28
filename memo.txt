@@ -17,3 +17,4 @@
 #17 methodのoverload
 #18 class
 #19 constructor
+    #19.5 constructor(this複数ver.)
