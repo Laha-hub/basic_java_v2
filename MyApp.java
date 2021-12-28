@@ -1,42 +1,50 @@
-// constructor : クラスがインスタンス化されるときに、必ず実行される特殊なメソッド
-
+// classの継承 : 既存のclassを拡張して、新しいclassを作成できるようになる
 
 class User {
     String name;
-    int age;
-
-    // constructorの宣言はクラスと同じ名前のメソッドを作ればよい
-    User(String name, int age) {
-        // メソッド内からクラスのフィールドにアクセスするには「this」という特殊なキーワードを使う
+    User(String name) {
         this.name = name;
-        this.age = age;
     }
-
-    // constructorはメソッドなので、overloadも有効
     User() {
-        // this.name = "Me";
-
-        // this() : このクラスのconstructorという意味
-        this("Me!", 40); // 引数なしでUserクラスをインスタンス化した場合に、結果として、this.nameに"Me!"が設定される
+        this("Me!");
     }
-
     void sayHi() {
         System.out.println("Hi! " + this.name);
     }
 }
 
+
+// Userクラスの継承(extends)
+// 親クラス（superクラス） => Userクラス
+// 子クラス（サブクラス） => AdminUserクラス
+class AdminUser extends User {
+    // 子クラスのconstructor
+    AdminUser(String name) {
+        // super()で、親クラスのconstructor（= Userr()）を呼び出す
+        super(name);
+    }
+    void sayHello() {
+        System.out.println("Hello! " + this.name);
+    }
+
+    // override : 親クラスのメソッド内容を子クラスにて上書き
+    // overrideを行うときはアノテーション（@〜）という仕組みを使った方が、明示的かつエラー検知できるので良い
+    @Override // アノテーション : 親クラスのメソッド名を間違えて記述した場合などに、エラーを出力してくれる
+    void sayHi() {
+        System.out.println("[admin] Hi! " + this.name);
+    }
+}
+
 public class MyApp {
     public static void main(String[] args) {
-        User tom;
-        tom = new User("Tom", 20);
+        User tom = new User("Tom");
         System.out.println(tom.name); // Tom
-        System.out.println(tom.age); // 20
         tom.sayHi(); // Hi! Tom
 
-        User me;
-        me = new User();
-        System.out.println(me.name); // Me
-        System.out.println(me.age); // 40
-        me.sayHi(); // Hi! Me
+        AdminUser bob = new AdminUser("Bob");
+        System.out.println(bob.name); // Bob
+        bob.sayHi(); // [admin] Hi! Bob （overrideが効いている）
+        bob.sayHello(); // Hello! Bob
+
     }
 }
