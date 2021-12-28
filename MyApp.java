@@ -1,34 +1,30 @@
 public class MyApp {
 
-    // method
-    // methodを使うと、複数の処理をまとめることができ、それに名前をつけることができる
+    // methodのoverload
 
-    // 引数なし
-    // public static void sayHi() {
-    //     System.out.println("Hi!");
-    // }
-
-    // 引数あり
-    // public static void sayHi(String name) {
-    //     System.out.println("Hi! " + name);
-    // }
-
-    // 戻り値あり : 戻り値のデータ型を指定する必要あり（voidは戻り値なしの意味）
-    public static String sayHi(String name) {
-        return "Hi! " + name;
+    public static void sayHi(String name) {
+        // method内で使う変数の有効範囲（スコープ）: xやnameはsayHi()のブロック内{}でのみ有効
+        int x = 10;
+        System.out.println("Hi! " + name);
     }
 
+
+
+    // overload : Javaでは同じ名前のmethodを複数記述可能
+    public static void sayHi() {
+        System.out.println("Hi! Nobody!");
+    }
+
+
+
     public static void main(String[] args) {
-        // 引数なし
-        // sayHi(); // Hi!
+        // xとnameはmain()のスコープ範囲外
+        // System.out.println(name); // Error!
+        // System.out.println(x); // Error!
 
-        // 引数あり
-        // sayHi("Tom"); // Hi! Tom
-        // sayHi("Bob"); // Hi! Bob
-
-        // 戻り値あり
-        String msg = sayHi("Steve");
-        System.out.println(msg); // Hi! Steve
+        // overload
+        sayHi("Steve"); // Hi! Steve
+        sayHi(); // Hi! Nobody!
     }
 
 }
