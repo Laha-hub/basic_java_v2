@@ -1,35 +1,33 @@
-// getter, setter
+// static修飾子
 
-// Javaでは1つのソースファイルにつき、publicなクラスは1つしか持てないので、Userクラスはpackage privateにする
+// static修飾子を用いれば、クラスをインスタンス化せずにクラスから直接使えるフィールドやメソッドを定義可能となる
+// static修飾子を用いた宣言は、個々のインスタンスで値を保持するのではなく、クラスに紐付いた形で値を保持することになる
+// staticをつけたフィールドやメソッドをクラスに属しているという意味で「クラス変数」や「クラスメソッド」と呼ぶ。
+// main()メソッドもstaticだが、Javaの仮想マシンがメインクラス（今回だとMyApp）のインスタンスを生成せずに、いきなり実行できるよう、staticメソッドになっている。
+
 
 class User {
     private String name;
-    private int score;
+    private static int count = 0;
 
-    public User(String name, int score) {
+    public User(String name) {
         this.name = name;
-        this.score = score;
+        User.count++;
     }
 
-    // scoreを参照するためのメソッド（getter）
-    public int getScore() {
-        return this.score;
-    }
-
-    // scoreの値を更新するためのメソッド（setter）
-    public void setScore(int score) {
-        if (score > 0) {
-            this.score = score;
-        }
+    public static void getInfo() {
+        System.out.println("# of instances: " + User.count);
     }
 }
 
 
 public class MyApp {
     public static void main(String[] args) {
-        User tom = new User("Tom", 65); // (score = 65)
-        tom.setScore(85); // (score = 85)
-        tom.setScore(-22); // (score = 85) (-22は無視)
-        System.out.println("score = " + tom.getScore()); // score = 85
+        User.getInfo(); // # of instances: 0
+        User tom = new User("Tom");
+        User.getInfo(); // # of instances: 1
+        User bob = new User("Bob");
+        User.getInfo(); // # of instances: 2
+
     }
 }
