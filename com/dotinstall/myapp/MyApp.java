@@ -1,19 +1,25 @@
-// パッケージ
-// クラスをパッケージに含めるには、パッケージ名のようなフォルダ作成の必要がある
-// 例 : myapp.dotinstall.comの場合 => com/dotinstall/myapp
+// パッケージのコンパイル
+// 別のパッケージのクラスを読み込むには、パッケージ名を指定する必要がある
+// import文を使うと他のパッケージ読み込みを指定でき、記述を簡略化できる
 
-// ファイルを作成し、それぞれのクラスをパッケージに含めるには、packageキーワードでの宣言が必要
+// コンパイルは、基点となるmain()メソッドがあるクラスをコンパイルすると、関連・使用しているクラスも連動してコンパイルされる
+// javac com/dotinstall/myapp/MyApp.java => エラーなければOK
+// java com.dotinstall.myapp.MyApp で実行
+
 
 package com.dotinstall.myapp;
+import com.dotinstall.myapp.model.User; // Userクラスのimport
+import com.dotinstall.myapp.model.AdminUser; // AdminUserクラスのimport
+// import com.dotinstall.myapp.model.*; // * : ワイルドカード指定も可能
 
 public class MyApp {
     public static void main(String[] args) {
         User tom = new User("Tom");
-        System.out.println(tom.name);
+        // System.out.println(tom.name);
         tom.sayHi();
 
         AdminUser bob = new AdminUser("Bob");
-        System.out.println(bob.name);
+        // System.out.println(bob.name);
         bob.sayHi();
         bob.sayHello();
     }
