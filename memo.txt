@@ -24,3 +24,4 @@
 #23 パッケージのコンパイル
 #24 getter, setter
 #25 static修飾子
+#26 initializer
