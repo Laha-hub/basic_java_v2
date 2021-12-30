@@ -25,3 +25,4 @@
 #24 getter, setter
 #25 static修飾子
 #26 initializer
+#27 final修飾子

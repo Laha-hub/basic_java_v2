@@ -1,53 +1,42 @@
-// イニシャライザ
+// final修飾子
 
-// イニシャライザ : クラスが初期化される際に行う処理を設定できる
-// インスタンスイニシャライザ : インスタンスを初期化する際に行う処理を設定できる
-
-// コンストラクタとインスタンスイニシャライザの違い
-// インスタンスイニシャライザ => インスタンス化される前の設定
-// コンストラクタ => インスタンスされた後に実行される
+// final : クラス、メソッド、フィールドに指定できる修飾子で、これを付けると変更不可となる
+// 修飾子の順番 : アクセス修飾子 => static => final が多い
 
 
-class User {
-    private String name;
-    private static int count;
+// final class User {} とすると、Userクラスの継承が不可となる
+final class User {
+    // private String name;
+    protected String name; // AdminUser でも使用するためprotected
 
-    // イニシャライザ
-    static {
-        User.count = 0;
-        System.out.println("Static Initializer");
-    }
-
-    // インスタンスイニシャライザ
-    {
-        System.out.println("Instance Initializer");
-    }
+    // フィールドにfinalをつける場合は、staticと併用して、定数とすることができる（すべて大文字が慣習。あと初期化必須）
+    private static final double VERSION = 1.1;
 
     public User(String name) {
         this.name = name;
-        User.count++;
-        System.out.println("Constructor");
+        User.VERSION = 1.2;
     }
 
-    public static void getInfo() {
-        System.out.println("# of instances: " + User.count);
+    // public final void sayHi() {} とすると、そのメソッドをoverrideできなくなる
+    public final void sayHi() {
+        System.out.println("Hi! " + this.name);
+    }
+}
+
+class AdminUser extends User {
+    public AdminUser(String name) {
+        super(name);
+    }
+
+    @Override
+    public void sayHi() {
+        System.out.println("[admin] Hi! " + this.name);
     }
 }
 
 
 public class MyApp {
     public static void main(String[] args) {
-        // Static Initializer
-        User.getInfo(); // # of instances: 0
-
-        // Instance Initializer
-        User tom = new User("Tom");
-        // Constructor
-        User.getInfo(); // # of instances: 1
-
-        // Instance Initializer
-        User bob = new User("Bob");
-        // Constructor
-        User.getInfo(); // # of instances: 2
+        User tom = new User("Tom"); // finalによるエラー x 3
     }
 }
