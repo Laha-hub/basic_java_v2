@@ -1,38 +1,32 @@
-// interface
+// 列挙型
 
-// interface : クラスの機能を拡張する仕組み
-// interfaceは継承と異なり、１つのクラスにいくつでも適用させることができるので、柔軟にクラスの機能拡張が可能となる。
+// 列挙型 : クラスのように自分で作ることができるデータ型。定数をまとめたもの。
+// 列挙型を宣言するには「enum」というキーワードを使用する。
+// 列挙型を定義すると、「ordinal()」という特殊なメソッドも同時に定義され、0から始まる連番がセットされる。
+// 列挙型の中には、定数以外にフィールドやメソッドを指定することも可能。
 
 
-// 印刷機能を各クラスに提供するインターフェース Printableを作る
-interface Printable {
-    // 定数（public, static, finalを省略可能）
-    double VERSION = 1.2;
-
-    // 抽象メソッド（public, abstractを省略可能）
-    void print();
-
-    // defaultメソッド : 抽象メソッドと異なりここに直接メソッドの内容を実装する
-    public default void getInfo() {
-        System.out.println("I/F ver. " + Printable.VERSION);
-    }
-
-    // staticメソッド : このinterfaceに属するメソッド（defaultメソッドが複雑になったとき、ヘルパー的に使用したりする）
-}
-
-// interfaceを使用するには「implements」キーワードをつける
-class User implements Printable {
-    @Override
-    public void print() {
-        System.out.println("Now printing user profile...");
-    }
+// 例 : 処理結果の成否を列挙型で保持する
+enum Result {
+    SUCCESS, // ordinal() = 0
+    ERROR, // ordinal() = 1
 }
 
 
 public class MyApp {
     public static void main(String[] args) {
-        User tom = new User();
-        tom.print(); // Now printing user profile...
-        tom.getInfo(); // I/F ver. 1.2
+        Result res;
+        res = Result.ERROR;
+
+        switch (res) {
+            case SUCCESS:
+                System.out.println("OK!");
+                System.out.println(res.ordinal()); // 0
+                break;
+            case ERROR:
+                System.out.println("NG!");
+                System.out.println(res.ordinal()); // 1
+                break;
+        }
     }
 }
