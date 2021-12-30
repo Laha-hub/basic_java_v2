@@ -1,42 +1,37 @@
-// final修飾子
+// 抽象クラス
 
-// final : クラス、メソッド、フィールドに指定できる修飾子で、これを付けると変更不可となる
-// 修飾子の順番 : アクセス修飾子 => static => final が多い
+// 抽象クラス : 他のクラスに継承してもらうことを前提にしているクラス。それ自身をインスタンス化できない。
+// 具象クラス : 抽象クラスを継承したクラス
 
 
-// final class User {} とすると、Userクラスの継承が不可となる
-final class User {
-    // private String name;
-    protected String name; // AdminUser でも使用するためprotected
 
-    // フィールドにfinalをつける場合は、staticと併用して、定数とすることができる（すべて大文字が慣習。あと初期化必須）
-    private static final double VERSION = 1.1;
+// 抽象クラス User から JapaneseUserクラスと AmericanUserクラスを生成する
+abstract class User {
+    public abstract void sayHi(); // 抽象メソッド : 具象クラスにてメソッドの内容を実装する
+}
 
-    public User(String name) {
-        this.name = name;
-        User.VERSION = 1.2;
-    }
-
-    // public final void sayHi() {} とすると、そのメソッドをoverrideできなくなる
-    public final void sayHi() {
-        System.out.println("Hi! " + this.name);
+// 具象クラス
+class JapaneseUser extends User {
+    @Override
+    public void sayHi() {
+        System.out.println("こんにちは！");
     }
 }
 
-class AdminUser extends User {
-    public AdminUser(String name) {
-        super(name);
-    }
-
+// 具象クラス
+class AmericanUser extends User {
     @Override
     public void sayHi() {
-        System.out.println("[admin] Hi! " + this.name);
+        System.out.println("Hi!");
     }
 }
 
 
 public class MyApp {
     public static void main(String[] args) {
-        User tom = new User("Tom"); // finalによるエラー x 3
+        AmericanUser tom = new AmericanUser();
+        JapaneseUser taro = new JapaneseUser();
+        tom.sayHi(); // Hi!
+        taro.sayHi(); // こんにちは！
     }
 }
