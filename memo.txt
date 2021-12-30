@@ -27,3 +27,4 @@
 #26 initializer
 #27 final修飾子
 #28 抽象クラス
+#29 interface
