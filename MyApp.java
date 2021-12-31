@@ -1,29 +1,42 @@
-// ラッパークラス : Wrapper Class
+// ジェネリクス : generics
 
-// 基本データ型には、それに対応する参照型のクラスが用意されている
-// int => Integerクラス
-// double => Doubleクラス
-// これらのIntegerクラスやDoubleクラスのことを「ラッパークラス」と呼ぶ
+// ジェネリクス : 汎用化されたデータ型で、クラスやインターフェースを作成することができる
 
 
+// ジェネリクス不使用の場合
+// class MyInteger {
+//     public void getThree(int x) {
+//         System.out.println(x);
+//         System.out.println(x);
+//         System.out.println(x);
+//     }
+// }
 
+
+// getThree()をintだけでなく、doubleやStringでも行いたい場合、修正が面倒。
+// ジェネリクスを用いれば、引数のデータ型を汎用化することができる
+
+// ジェネリクス使用の場合
+// <T>を記述することで、どのデータ型にも対応可能となる
+class MyData<T> {
+    public void getThree(T x) {
+        System.out.println(x);
+        System.out.println(x);
+        System.out.println(x);
+    }
+}
 
 public class MyApp {
     public static void main(String[] args) {
-        // 基本データ型を対応するラッパークラスに変換する方法
-        // Integer i = new Integer(32); // 基本データ型の'32'が参照型のラッパークラスIntegerとして設定
+        // ジェネリクス不使用の場合
+        // MyInteger mi = new MyInteger();
+        // mi.getThree(55); // 55, 55, 55
 
-        // ラッパークラスの値を基本データ型として取り出す方法
-        // int n = i.intValue();
+        // ジェネリクス使用の場合
+        MyData<Integer> i = new MyData<>(); // <>に指定する型は参照型しか指定できない
+        i.getThree(32); // 32, 32, 32
+        MyData<String> s = new MyData<>();
+        s.getThree("Hello"); // Hello, Hello, Hello
 
-        // 省略記法
-        Integer i = 32; // auto boxing : 自動変換（基本 => 参照）
-        i = null; // iがnullになるので、次の行で自動変換できずにエラーになる
-        int n = i; // auto unboxing : 自動変換（参照 => 基本）
-
-        // 参照型データにおいて、どのメモリ領域も参照していない状態にしたい場合
-        // i = null;
-
-        System.out.println();
     }
 }
