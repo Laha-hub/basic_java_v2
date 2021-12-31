@@ -1,38 +1,29 @@
-// 例外処理
+// ラッパークラス : Wrapper Class
 
-// 例外処理 : プログラムの実行中に予期しない結果が発生した際、適切に処理を行えうことができる
-// Java固有の例外だけでなく、ユーザーが任意の例外を作成することもできる（クラスにて指定する）
+// 基本データ型には、それに対応する参照型のクラスが用意されている
+// int => Integerクラス
+// double => Doubleクラス
+// これらのIntegerクラスやDoubleクラスのことを「ラッパークラス」と呼ぶ
 
 
-// ユーザー独自の例外
-class MyException extends Exception {
-    // constructorでエラーメッセージを取得
-    public MyException(String s) {
-        super(s);
-    }
-}
 
 
 public class MyApp {
-    public static void div(int a, int b) {
-        try {
-            if (b < 0) {
-                throw new MyException("not minus!");
-            }
-            System.out.print(a / b);
-        } catch (ArithmeticException e) {
-            System.err.println(e.getMessage());
-        } catch (MyException e) {
-            System.err.println(e.getMessage());
-        } finally {
-            System.out.println(" -- end -- ");
-        }
-    }
-
     public static void main(String[] args) {
-        div(3, 0); // ArithmeticException => / by zero
-        // -- end --
-        div(5, -2); // MyException => not minus!
-        // -- end --
+        // 基本データ型を対応するラッパークラスに変換する方法
+        // Integer i = new Integer(32); // 基本データ型の'32'が参照型のラッパークラスIntegerとして設定
+
+        // ラッパークラスの値を基本データ型として取り出す方法
+        // int n = i.intValue();
+
+        // 省略記法
+        Integer i = 32; // auto boxing : 自動変換（基本 => 参照）
+        i = null; // iがnullになるので、次の行で自動変換できずにエラーになる
+        int n = i; // auto unboxing : 自動変換（参照 => 基本）
+
+        // 参照型データにおいて、どのメモリ領域も参照していない状態にしたい場合
+        // i = null;
+
+        System.out.println();
     }
 }
