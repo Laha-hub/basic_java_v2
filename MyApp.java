@@ -1,32 +1,38 @@
-// 列挙型
+// 例外処理
 
-// 列挙型 : クラスのように自分で作ることができるデータ型。定数をまとめたもの。
-// 列挙型を宣言するには「enum」というキーワードを使用する。
-// 列挙型を定義すると、「ordinal()」という特殊なメソッドも同時に定義され、0から始まる連番がセットされる。
-// 列挙型の中には、定数以外にフィールドやメソッドを指定することも可能。
+// 例外処理 : プログラムの実行中に予期しない結果が発生した際、適切に処理を行えうことができる
+// Java固有の例外だけでなく、ユーザーが任意の例外を作成することもできる（クラスにて指定する）
 
 
-// 例 : 処理結果の成否を列挙型で保持する
-enum Result {
-    SUCCESS, // ordinal() = 0
-    ERROR, // ordinal() = 1
+// ユーザー独自の例外
+class MyException extends Exception {
+    // constructorでエラーメッセージを取得
+    public MyException(String s) {
+        super(s);
+    }
 }
 
 
 public class MyApp {
-    public static void main(String[] args) {
-        Result res;
-        res = Result.ERROR;
-
-        switch (res) {
-            case SUCCESS:
-                System.out.println("OK!");
-                System.out.println(res.ordinal()); // 0
-                break;
-            case ERROR:
-                System.out.println("NG!");
-                System.out.println(res.ordinal()); // 1
-                break;
+    public static void div(int a, int b) {
+        try {
+            if (b < 0) {
+                throw new MyException("not minus!");
+            }
+            System.out.print(a / b);
+        } catch (ArithmeticException e) {
+            System.err.println(e.getMessage());
+        } catch (MyException e) {
+            System.err.println(e.getMessage());
+        } finally {
+            System.out.println(" -- end -- ");
         }
+    }
+
+    public static void main(String[] args) {
+        div(3, 0); // ArithmeticException => / by zero
+        // -- end --
+        div(5, -2); // MyException => not minus!
+        // -- end --
     }
 }
