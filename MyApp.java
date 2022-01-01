@@ -1,50 +1,41 @@
-// 無名クラス、ラムダ式
+// String クラス
 
-
-// 関数型インターフェース : 抽象メソッドを１つだけ持つインターフェースのことを入力に対して、出力が１つだけに定まる
-// class MyRunnable implements Runnable {
-//     @Override
-//     public void run() {
-//         for (int i = 0; i < 500; i++) {
-//             System.out.print('*');
-//         }
-//     }
-// }
-
-
-// Javaのバージョン8から関数型インターフェースは「ラムダ式」という特殊な記法で置き換えることが可能となった
-
-// ラムダ式の構文
-// (引数) -> {処理}
-
+// Stringクラスのよく使うメソッド
+// s.length() : 文字数カウント
+// s.substring(x, y) : 部分文字列の切り出し（x番目からy番目の前まで切り出し）
+// s.replaceAll("xy", "XY") : 文字列の置換
+// s1.equals(s2) : 文字列の等価性比較
 
 
 public class MyApp {
     public static void main(String[] args) {
-        // MyRunnable r = new MyRunnable();
-        // Thread t = new Thread(r);
-        // t.start();
+        String s = "abcdef";
+        System.out.println(s.length()); // 6
+        System.out.println(s.substring(2, 5)); // cde
+        System.out.println(s.replaceAll("ab", "AB")); // ABcdef
 
-        // new Thread(new MyRunnable()).start(); // new MyRunnable()部分を無名クラスにする（以下）
-
-        // new Thread(new Runnable() {
-        //     @Override
-        //     public void run() {
-        //         for (int i = 0; i < 500; i++) {
-        //             System.out.print('*');
-        //         }
-        //     }
-        // }).start();
-
-        // ラムダ式にて書き換え
-        new Thread(() -> {
-            for (int i = 0; i < 500; i++) {
-                System.out.print('*');
-            }
-        }).start();
-
-        for (int i = 0; i < 500; i++) {
-            System.out.print('.');
+        String s1 = "ab";
+        String s2 = "ab";
+        if (s1.equals(s2)) {
+            System.out.println("same!"); // same!
         }
+
+        // 本来、参照型データであれば、「==」の比較はメモリ格納場所を比較して判定を行う。
+        // Stringクラスは参照型だが、基本データ型と同じように振る舞うことになっており、
+        // すでに宣言されている文字列と同じものを宣言した場合は同じメモリ領域を使い回すようになっているため、「s1 == s2」はtrueとなる。
+        if (s1 == s2) {
+            System.out.println("same!same!"); // same!same!
+        }
+
+
+        // 文字列ごとに異なるメモリ領域を使用する場合は、明示的にStringクラスのインスタん化を行う
+        String ss1 = new String("ab");
+        String ss2 = new String("ab");
+        if (ss1 == ss2) {
+            System.out.println("same!same!same!");
+        } else {
+            System.out.println("different!"); // different!
+        }
+
     }
 }
