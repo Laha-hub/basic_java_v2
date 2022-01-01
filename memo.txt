@@ -37,3 +37,4 @@
 #36 Stringクラス
 #37 printfメソッド
 #38 Math, Randomクラス
+#39 ArrayList
