@@ -36,3 +36,4 @@
 #35 無名クラス、ラムダ式
 #36 Stringクラス
 #37 printfメソッド
+#38 Math, Randomクラス
