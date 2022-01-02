@@ -38,3 +38,4 @@
 #37 printfメソッド
 #38 Math, Randomクラス
 #39 ArrayList
+#40 HashSet

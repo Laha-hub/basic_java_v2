@@ -1,48 +1,43 @@
-// ArrayList
+// HashSet
 
-// ArrayList : 配列のようなもの。配列と異なり、あとから要素の追加/削除が可能
-// ArrayListを使うにはimportが必要
+// HashSet : ArrayList同様、複数のデータを扱うもの。重複を許さない点とデータを保持する順番が定まらない点が異なる。
+// このほか、HashSetと似たようなクラスで、「TreeSet」クラス, 「LinkedHashSet」クラスがある。
+// これらもHashSetと操作は同じだが、データをお保持する順番が異なる。
+// HashSet : 要素の順番不定
+// TreeSet : 要素の値順にソートされる
+// LinkedHashSet : 要素の追加された順
 
-// ArrayListと同じくListインターフェースを実装したLinkedListクラスもある。
-// LinkedListとArrayListはまったく同じように使用できるが、データ構造が異なっており、特徴が異なる。
-// ArrayList : 要素の検索が速い、要素の追加と削除が遅い
-// LinkedList : 要素の検索が遅い、要素の追加と削除が速い
 
 
 import java.util.*;
 public class MyApp {
     public static void main(String[] args) {
-        // ArrayList<Integer> sales = new ArrayList<>();
-        List<Integer> sales = new ArrayList<>();
-        // ArrayListだけで使えるメソッドはあまり使うことはなく、ArrayListが実装しているList型のインターフェースで宣言することもよくある。
+        // HashSet<Integer> sales = new HashSet<>();
+        Set<Integer> sales = new HashSet<>();
 
-        // 要素の追加
+        // 要素の追加 : add()
         sales.add(10);
         sales.add(20);
         sales.add(30);
+        sales.add(10); // HashSetとSetクラスは重複を許さないので、追加されない
+        // また、HashSetとSetクラスは要素の順番が定まらないので、何番目の要素を取り出すということもできない
 
-        // 追加した要素の確認
-        // sales.size() : 要素の個数
-        for (int i = 0; i < sales.size(); i++) {
-            // sales.get() : 要素の取得
-            System.out.println(sales.get(i)); // 10, 20, 30
+        // 要素の個数 : size()
+        System.out.println(sales.size()); // 3 (重複を許さないため)
+
+        // すべての要素を取り出す（for文）
+        for (Integer sale : sales) {
+            System.out.println(sale); // すべての要素を取り出せるが、順番が固定されない
         }
 
-        // for文の別の書き方
-        // for (Integer sale : sales) {
-        //     System.out.println(sale);
-        // }
+        // 要素の削除 : remove()
+        sales.remove(30);
 
-
-        // 要素の変更
-        sales.set(0, 100); // 0番目の要素を100に変更
-
-        // 要素の削除
-        sales.remove(2); // 2番目の要素を削除
-
-
+        // すべての要素を取り出す（for文）
         for (Integer sale : sales) {
-            System.out.println(sale); // 100, 20
+            System.out.println(sale); // すべての要素を取り出せるが、順番が固定されない
         }
     }
 }
+
+
