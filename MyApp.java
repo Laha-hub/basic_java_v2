@@ -1,31 +1,36 @@
-// Stream API
+// LocalDateTime クラス
 
-// Stream API : Java 8から導入。複数の値を順番に処理していくための仕組み。ArrayListなどの集合データと併せて使用される。
-// Stream APIを用いると複雑な処理をスッキリ記述することが可能となる。
+// jabva.timeパッケージ : Java 8から導入の日時関連のクラス。
+// LocalDateTime : タイムゾーンを考慮しないクラス
+// 日時クラスは変更不可（= イミュータブル）
 
 
-import java.util.*;
+import java.time.*;
+
+// 任意のフォーマット指定
+import java.time.format.DateTimeFormatter;
+
 public class MyApp {
     public static void main(String[] args) {
-        // 配列において、宣言と同時に値を格納するには、Arrays.asList()を用いれば良い（java.util.*のimport必要）
-        List<Integer> sales = new ArrayList<>(Arrays.asList(12, 30, 22, 4, 9));
+        // 現在時刻のインスタンス取得 : now()
+        LocalDateTime d = LocalDateTime.now(); // 2022/1/2/22:36
 
-        // salesの値に対して、何らかの処理をする
-        // (1) Stream APIを使わない場合
-        // for (Integer sale : sales) {
-        //     System.out.println(sale);
-        // }
-        // 処理内容がシンプルな場合はこれでも良いが、処理内容が複雑になった場合、Stream APIが便利
+        //  任意時刻のインスタンス取得 : of()
+        // LocalDateTime d = LocalDateTime.of(2022, 1, 1, 10, 10, 10); // 2022年1月1日10時10分10秒
+
+        // 任意時刻のインスタンス取得（ISO書式） : parse()
+        // LocalDateTime d = LocalDateTime.parse("2022-01-01T10:10:10"); // 2022年1月1日10時10分10秒
 
 
-        // (2) Stream APIを使った場合
-        // まずはデータ集合をStreamにする
-        sales
-            .stream()
-            // 中間処理（0個以上）
-            .filter(e -> e % 3 == 0) // ラムダ式 : 引数 -> 処理（salesの各データがeに入り、e%3==0がtrueのもののみ抽出）
-            .map(e -> "( " + e + " )") // 抽出された全データに「( )」を付与
-            // 終端処理
-            .forEach(System.out::println); // メソッド参照 : メソッド自体（この場合だとSystem.out.println()）をforEach()に渡せる
+        System.out.println(d.getYear()); // 2022
+        System.out.println(d.getMonth()); // JANUARY
+        System.out.println(d.getMonth().getValue()); // 1
+
+        // 現在日時に2ヶ月プラスと1日マイナス
+        System.out.println(d.plusMonths(2).minusDays(1)); // 2022-03-01T13:39:26.450
+
+        // 任意のフォーマット指定
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy!MM!dd!");
+        System.out.println(d.format(dtf)); // 2022!01!02! （日時クラスはイミュータブルなので03/01ではなく、今日の日付になる）
     }
 }
