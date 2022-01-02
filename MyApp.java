@@ -1,52 +1,31 @@
-// HashMap
+// Stream API
 
-// HashMap : 複数のデータを管理するためのもの。keyとvalueでデータを管理する。
-// このほか、HashMapと似たようなクラスに「TreeMap」クラス、「LinkedHashMap」クラスがある。
-// これらはデータの操作については同じだが、データが保持される順番が異なる。
-// HashMap : データの順番不定
-// TreeMap : keyの順番
-// LinkedHashMap : データが追加された順番
+// Stream API : Java 8から導入。複数の値を順番に処理していくための仕組み。ArrayListなどの集合データと併せて使用される。
+// Stream APIを用いると複雑な処理をスッキリ記述することが可能となる。
 
 
 import java.util.*;
 public class MyApp {
     public static void main(String[] args) {
-        // HashMap<String, Integer> sales = new HashMap<>(); // keyがString, valueがInteger
-        Map<String, Integer> sales = new HashMap<>();
+        // 配列において、宣言と同時に値を格納するには、Arrays.asList()を用いれば良い（java.util.*のimport必要）
+        List<Integer> sales = new ArrayList<>(Arrays.asList(12, 30, 22, 4, 9));
 
-        // 要素の追加 : put()
-        sales.put("tom", 10);
-        sales.put("bob", 20);
-        sales.put("steve", 30);
-
-        // 要素の取得 : get("key")
-        // 要素の個数 : size()
-        System.out.println(sales.get("tom")); // 10
-        System.out.println(sales.size()); // 3
+        // salesの値に対して、何らかの処理をする
+        // (1) Stream APIを使わない場合
+        // for (Integer sale : sales) {
+        //     System.out.println(sale);
+        // }
+        // 処理内容がシンプルな場合はこれでも良いが、処理内容が複雑になった場合、Stream APIが便利
 
 
-        // すべての要素取り出し
-        for (Map.Entry<String, Integer> sale : sales.entrySet()) {
-            System.out.println(sale.getKey() + ": " + sale.getValue()); // tom: 10, bob: 20, steve: 30
-        }
-
-
-        // 値の更新
-        sales.put("tom", 100);
-
-        // 要素の削除 : remove("key")
-        sales.remove("steve");
-
-        for (Map.Entry<String, Integer> sale : sales.entrySet()) {
-            System.out.println(sale.getKey() + ": " + sale.getValue()); // tom: 100, bob: 20
-        }
-
+        // (2) Stream APIを使った場合
+        // まずはデータ集合をStreamにする
+        sales
+            .stream()
+            // 中間処理（0個以上）
+            .filter(e -> e % 3 == 0) // ラムダ式 : 引数 -> 処理（salesの各データがeに入り、e%3==0がtrueのもののみ抽出）
+            .map(e -> "( " + e + " )") // 抽出された全データに「( )」を付与
+            // 終端処理
+            .forEach(System.out::println); // メソッド参照 : メソッド自体（この場合だとSystem.out.println()）をforEach()に渡せる
     }
 }
-
-
-
-
-
-
-
